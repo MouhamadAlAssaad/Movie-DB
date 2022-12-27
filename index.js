@@ -40,5 +40,27 @@ app.get("/search", (req,res) => {
 
 
 })
+app.get("/movies/create", (req, res) => {
+    res.json({ status:200 , message:"create movies" })
+
+})
+const movies = [
+    { title: 'Jaws', year: 1975, rating: 8 },
+    { title: 'Avatar', year: 2009, rating: 7.8 },
+    { title: 'Brazil', year: 1985, rating: 8 },
+    { title: 'الإرهاب والكباب‎', year: 1992, rating: 6.2 }
+]
+app.get("/movies/read", (req, res) => {
+    res.json({ status:200 , message: movies})
+
+})
+app.get("/movies/update", (req, res) => {
+    res.json({ status:200 , message:"update movies" })
+
+})
+app.get("/movies/delete", (req, res) => {
+    res.json({ status:200 , message:"delete movies" })
+
+})
 
 app.listen(3000, () => { console.log("server started on port 3000")})
