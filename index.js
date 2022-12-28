@@ -92,3 +92,24 @@ app.get("/movies/read/by-title", (req, res) => {
         res.json({status: 404, error: true, message: `the movie ${id} does not exist`})
     }
 })
+app.get("/movies/add", (req, res) => {
+    const title = req.query.title
+    const year = req.query.year
+    const rating = req.query.rating
+
+
+    if (!title || !year) {
+        res.json({status: 403, error: true, message: "you cannot create a movie without providing a title and a year "})
+
+    }
+    else{
+        if(year.length !==4 || isNaN(year)){
+            res.json({status: 403, error:true, message: "you cannot create a movie without providing a title and a year"})
+        }
+        else{
+            const newmovie = {title, year,rating: rating || 4}
+            movies.push(newmovie)
+            res.json({status: 200, data: movies})
+        }
+    }
+})
