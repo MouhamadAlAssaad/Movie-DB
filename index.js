@@ -48,7 +48,12 @@ const movies = [
     { title: 'Jaws', year: 1975, rating: 8 },
     { title: 'Avatar', year: 2009, rating: 7.8 },
     { title: 'Brazil', year: 1985, rating: 8 },
-    { title: 'الإرهاب والكباب‎', year: 1992, rating: 6.2 }
+    { title: 'الإرهاب والكباب‎', year: 1992, rating: 6.2 },
+    { id:0,title: 'Jaws', year: 1975, rating: 8 },
+    { id:1,title: 'Avatar', year: 2009, rating: 7.8 },
+    { id:2,title: 'Brazil', year: 1985, rating: 8 },
+    { id:3,title: 'الإرهاب والكباب‎', year: 1992, rating: 6.2 }
+    
 ]
 app.get("/movies/read", (req, res) => {
     res.json({ status:200 , message: movies})
@@ -65,14 +70,25 @@ app.get("/movies/delete", (req, res) => {
 
 app.listen(3000, () => { console.log("server started on port 3000")})
 
-app.get('/movies/read/by-date', (req, res) => {
+app.get("/movies/read/by-date", (req, res) => {
     res.json({ status: 200, data: movies.sort((a,b)=>a.year-b.year) })
   })
 
-  app.get('/movies/read/by-rating', (req, res) => {
+app.get("/movies/read/by-rating", (req, res) => {
     res.json({ status: 200, data: movies.sort((a,b)=>b.rating-a.rating) })
   })
 
-  app.get('/movies/read/by-title', (req, res) => {
+app.get("/movies/read/by-title", (req, res) => {
     res.json({ status: 200, data: movies.sort((a,b)=>a.title.charCodeAt(0)-b.title.charCodeAt(0)) })
   })
+
+  app.get("/movies/read/id/:id", (req, res) => {
+    const id = parseInt(req.params.id,10)
+    const movie = movies.find(movie => movie.id === id)
+    if (movie) {
+        res.json({status: 200, data: movie})
+    }
+    else{
+        res.json({status: 404, error: true, message: `the movie ${id} does not exist`})
+    }
+})
