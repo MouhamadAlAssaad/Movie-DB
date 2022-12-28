@@ -126,3 +126,21 @@ app.get("/movies/delete/:id", (req,res) => {
 
 
 })
+app.get("/movies/update/:id", (req, res) => {
+    const id = req.params.id
+    const mindex = movies.findIndex((movie) => movie.id == id)
+    if (mindex === -1) {
+      res.json({ status: 404, error: true, message: `the movie ${id} does not exist` });
+    } 
+    else {
+      const { title, rating } = req.query
+      if (title) {
+        movies[mindex].title = title
+      }
+      if (rating) {
+        movies[mindex].rating = rating
+      }
+      res.json({ movies })
+    }
+  })
+  
