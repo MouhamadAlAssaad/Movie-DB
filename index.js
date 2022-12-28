@@ -64,3 +64,15 @@ app.get("/movies/delete", (req, res) => {
 })
 
 app.listen(3000, () => { console.log("server started on port 3000")})
+
+app.get('/movies/read/by-date', (req, res) => {
+    res.json({ status: 200, data: movies.sort((a,b)=>a.year-b.year) })
+  })
+
+  app.get('/movies/read/by-rating', (req, res) => {
+    res.json({ status: 200, data: movies.sort((a,b)=>b.rating-a.rating) })
+  })
+
+  app.get('/movies/read/by-title', (req, res) => {
+    res.json({ status: 200, data: movies.sort((a,b)=>a.title.charCodeAt(0)-b.title.charCodeAt(0)) })
+  })
