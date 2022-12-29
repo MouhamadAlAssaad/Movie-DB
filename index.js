@@ -45,10 +45,10 @@ app.get("/movies/create", (req, res) => {
 
 })
 const movies = [
-    { title: 'Jaws', year: 1975, rating: 8 },
-    { title: 'Avatar', year: 2009, rating: 7.8 },
-    { title: 'Brazil', year: 1985, rating: 8 },
-    { title: 'الإرهاب والكباب‎', year: 1992, rating: 6.2 },
+    // { title: 'Jaws', year: 1975, rating: 8 },
+    // { title: 'Avatar', year: 2009, rating: 7.8 },
+    // { title: 'Brazil', year: 1985, rating: 8 },
+    // { title: 'الإرهاب والكباب‎', year: 1992, rating: 6.2 },
     { id:0,title: 'Jaws', year: 1975, rating: 8 },
     { id:1,title: 'Avatar', year: 2009, rating: 7.8 },
     { id:2,title: 'Brazil', year: 1985, rating: 8 },
@@ -93,6 +93,8 @@ app.get("/movies/read/by-title", (req, res) => {
     }
 })
 app.get("/movies/add", (req, res) => {
+app.post("/movies/add", (req, res) => {
+
     const title = req.query.title
     const year = req.query.year
     const rating = req.query.rating
@@ -112,8 +114,11 @@ app.get("/movies/add", (req, res) => {
             res.json({status: 200, data: movies})
         }
     }
-})
+})})
+
+
 app.get("/movies/delete/:id", (req,res) => {
+app.delete("/movies/delete/:id", (req,res) => {
     const id = req.params.id
     const index = movies.findIndex((movie) => movie.id == id)
     if (index === -1){
@@ -125,8 +130,11 @@ app.get("/movies/delete/:id", (req,res) => {
     }
 
 
-})
+})})
+
+
 app.get("/movies/update/:id", (req, res) => {
+app.put("/movies/update/:id", (req, res) => {
     const id = req.params.id
     const mindex = movies.findIndex((movie) => movie.id == id)
     if (mindex === -1) {
@@ -142,5 +150,4 @@ app.get("/movies/update/:id", (req, res) => {
       }
       res.json({ movies })
     }
-  })
-  
+  })})
