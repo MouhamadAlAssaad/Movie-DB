@@ -92,7 +92,8 @@ app.get("/movies/read/by-title", (req, res) => {
         res.json({status: 404, error: true, message: `the movie ${id} does not exist`})
     }
 })
-app.get("/movies/add", (req, res) => {
+
+// app.get("/movies/add", (req, res) => {
 app.post("/movies/add", (req, res) => {
 
     const title = req.query.title
@@ -114,10 +115,11 @@ app.post("/movies/add", (req, res) => {
             res.json({status: 200, data: movies})
         }
     }
-})})
+})
+// })
 
 
-app.get("/movies/delete/:id", (req,res) => {
+// app.get("/movies/delete/:id", (req,res) => {
 app.delete("/movies/delete/:id", (req,res) => {
     const id = req.params.id
     const index = movies.findIndex((movie) => movie.id == id)
@@ -130,10 +132,11 @@ app.delete("/movies/delete/:id", (req,res) => {
     }
 
 
-})})
+})
+// })
 
 
-app.get("/movies/update/:id", (req, res) => {
+// app.get("/movies/update/:id", (req, res) => {
 app.put("/movies/update/:id", (req, res) => {
     const id = req.params.id
     const mindex = movies.findIndex((movie) => movie.id == id)
@@ -150,4 +153,5 @@ app.put("/movies/update/:id", (req, res) => {
       }
       res.json({ movies })
     }
-  })})
+  })
+// })
